@@ -1,0 +1,58 @@
+#include "../include/STD_Types.h"
+#include "../include/BIT_Math.h"
+#include "../include/MRCC_interface.h"
+#include "../include/MNVIC_interface.h"
+#include "../include/MGPIO_interface.h"
+#include "../include/MUART_interface.h"
+
+u8 flag = 0;
+
+void UART_ReceptionHandler(void){
+	u8 ReceivedData = MUART_u8ReceiveData();
+	if(ReceivedData == 'A'){
+		flag = 1;
+	}else if(ReceivedData == 'B'){
+		flag = 0;
+	}
+}
+
+int main(){
+
+	MRCC_vInit();
+	MRCC_vEnablePeripheralClock(RCC_GPIOA);
+	MRCC_vEnablePeripheralClock(RCC_USART1);
+
+	MNVIC_vSetPriorityGroups(GROUP_4_SUB_4);
+	MNVIC_vSetInterruptPriority(USART1,GROUP_0,SUBGROUP_0);
+	MNVIC_vEnableInterrupt(USART1);
+
+	MGPIO_vSetPinMode(GPIO_PORTA,GPIO_PIN0,GPIO_MODE_INPUT);
+	MGPIO_vSetPinInPutPull(GPIO_PORTA,GPIO_PIN0,GPIO_PULL_UP);
+
+	MGPIO_vSetPinMode(GPIO_PORTA,GPIO_PIN1,GPIO_MODE_OUTPUT);
+	MGPIO_vSetPinOutPutType(GPIO_PORTA,GPIO_PIN1,GPIO_PUSHPULL);
+	MGPIO_vSetPinOutPutSpeed(GPIO_PORTA,GPIO_PIN1,GPIO_HIGH_SPEED);
+	MGPIO_vSetPinValue(GPIO_PORTA,GPIO_PIN1,GPIO_LOW);
+
+	MGPIO_vSetPinMode(GPIO_PORTA,GPIO_PIN10,GPIO_MODE_ALTFUN);
+	MGPIO_vSetAlternativeFunction(GPIO_PORTA,GPIO_PIN10,ALTFUN_7);
+
+	MUART_vInit();
+	MUART_vEnable();
+	//MUART_vEnableReceptionInterrupt();
+	MUART_vCallBack(UART_ReceptionHandler);
+
+	u8 GPIO_CarDoorLock;
+
+	while(1){
+		MGPIO_vSetPinValue(GPIO_PORTA,GPIO_PIN1,GPIO_HIGH);
+		GPIO_CarDoorLock = MGPIO_u8GetPinValue(GPIO_PORTA,GPIO_PIN0);
+		if(flag && !GPIO_CarDoorLock){
+			MGPIO_vSetPinValue(GPIO_PORTA,GPIO_PIN1,GPIO_HIGH);
+		}else{
+			MGPIO_vSetPinValue(GPIO_PORTA,GPIO_PIN1,GPIO_LOW);
+		}
+	}
+
+	return 0;
+}

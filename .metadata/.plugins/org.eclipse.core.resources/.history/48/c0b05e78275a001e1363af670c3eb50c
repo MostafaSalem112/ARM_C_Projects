@@ -1,0 +1,7 @@
+#ifndef HWIFI_PRIVATE_H
+#define HWIFI_PRIVATE_H
+
+static u8 HWIFI_u8CommandValidate (u32 Copy_u32TimeOut,u8 *data_array);
+
+
+#endif

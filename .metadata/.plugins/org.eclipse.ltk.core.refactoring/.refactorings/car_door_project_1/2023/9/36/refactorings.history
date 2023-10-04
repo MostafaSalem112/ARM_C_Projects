@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;car_door_project_1/src/HAL/HCarKey&apos; to &apos;HCARKEY&apos;" description="Rename resource &apos;HCarKey&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/HAL/HCarKey" name="HCARKEY" stamp="1694029551958" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;car_door_project_1/src/HAL/HCARKEY/HCARKER_interface.h&apos; to &apos;HCARKEY_interface.h&apos;" description="Rename resource &apos;HCARKER_interface.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/HAL/HCARKEY/HCARKER_interface.h" name="HCARKEY_interface.h" stamp="1694030964253" updateReferences="true"/>
+</session>

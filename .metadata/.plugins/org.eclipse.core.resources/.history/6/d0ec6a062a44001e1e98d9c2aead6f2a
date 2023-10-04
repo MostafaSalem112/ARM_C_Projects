@@ -1,0 +1,17 @@
+#include "../include/STD_Types.h"
+#include "../include/BIT_Math.h"
+#include "../include/MRCC_interface.h"
+#include "../include/MNVIC_interface.h"
+#include "../include/MGPIO_interface.h"
+#include "../include/MEXTI_interface.h"
+#include "../include/MUART_interface.h"
+
+int main(){
+
+	MRCC_vInit();
+	MRCC_vEnablePeripheralClock(RCC_GPIOA);
+	MRCC_vEnablePeripheralClock(RCC_SYSCFG);
+	MRCC_vEnablePeripheralClock(RCC_USART1);
+
+	return 0;
+}

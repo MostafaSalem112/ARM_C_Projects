@@ -1,0 +1,24 @@
+src/main.o: ../src/main.c ../src/LIB/STD_Types.h ../src/LIB/BIT_Math.h \
+ ../src/MCAL/MRCC/MRCC_interface.h ../src/MCAL/MGPIO/MGPIO_interface.h \
+ ../src/MCAL/MFMI/MFMI_interface.h \
+ ../src/MCAL/MSYSTIKC/MSYSTICK_interface.h \
+ ../src/MCAL/MUART/MUART_interface.h ../src/HAL/HWIFI/HWIFI_interface.h \
+ ../src/APP/AHexParser/AHexParser_interface.h
+
+../src/LIB/STD_Types.h:
+
+../src/LIB/BIT_Math.h:
+
+../src/MCAL/MRCC/MRCC_interface.h:
+
+../src/MCAL/MGPIO/MGPIO_interface.h:
+
+../src/MCAL/MFMI/MFMI_interface.h:
+
+../src/MCAL/MSYSTIKC/MSYSTICK_interface.h:
+
+../src/MCAL/MUART/MUART_interface.h:
+
+../src/HAL/HWIFI/HWIFI_interface.h:
+
+../src/APP/AHexParser/AHexParser_interface.h:
